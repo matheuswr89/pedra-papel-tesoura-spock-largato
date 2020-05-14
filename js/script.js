@@ -26,7 +26,7 @@ const game = document.querySelector('.game');
 const pentagon = document.querySelector('.pentagon');
 const playerBtn = document.getElementById('player');
 const houseBtn = document.getElementById('house');
-const playerImg = document.getElementById('playerImg');
+const player = document.getElementById('player');
 const playAgain = document.querySelector('.playAgain');
 const houseImg = document.createElement('img');
 const winner = document.querySelector('.winner');
@@ -55,18 +55,21 @@ const generateHouseItem = () => {
     localStorage.setItem('houseId', i);
     localStorage.setItem('shadowHouse', shadowHouse);
 }
-
+const resultText = document.createElement('h1');
+const playerImg = document.createElement('img');
 // Play game
 items.map(({ name, color, id }) => {
     const choice = document.getElementById(name);
     const shadow = `inset 0px 5px 0px 0px #ccc, 0px 6px 0px 0px ${color}, 0px 0px 0px 30px rgba(255,255,255,0.06), 0px 0px 0px 60px rgba(255,255,255,0.03), 0px 0px 0px 100px rgba(255,255,255,0.01)`;
     let result = ''
-
     choice.addEventListener('click', function () {
+        playerImg.removeAttribute('img')
+        resultText.removeAttribute('h1')
+        resultText.removeAttribute
         pentagon.style.display = 'none';
         game.style.display = 'flex';
         playerBtn.classList.add('btn', 'playerBtn', name);
-        playerImg.src = `images/icon-${name}.svg`;
+        console.log(document.getElementsByTagName('h1')[0].value)
 
         generateHouseItem();
         const houseId = localStorage.getItem('houseId');
@@ -146,10 +149,13 @@ items.map(({ name, color, id }) => {
         if (score < 0) {
             score = 0
         }
-
+        resultText.innerHTML = "";
+        playerImg.setAttribute('src', `images/icon-${name}.svg`);
+        player.appendChild(playerImg);
+        resultText.appendChild(document.createTextNode(result));
         setTimeout(function () {
             scoreText.innerText = score;
-            resultText.innerText = result;
+            winner.appendChild(resultText);
             winner.style.display = 'block';
         }, 2000);
     });
