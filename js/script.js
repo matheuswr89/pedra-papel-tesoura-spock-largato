@@ -38,7 +38,6 @@ let score = 0;
 const generateHouseItem = () => {
     const getRandomId = () => Math.floor(Math.random() * 5) + 0;
     let i = getRandomId();
-    console.log(i)
     const shadowHouse = `inset 0px 5px 0px 0px #ccc, 0px 6px 0px 0px ${items[i].color}, 0px 0px 0px 30px rgba(255,255,255,0.06), 0px 0px 0px 60px rgba(255,255,255,0.03), 0px 0px 0px 100px rgba(255,255,255,0.01)`;
 
     function getRandomItem() {
@@ -47,7 +46,6 @@ const generateHouseItem = () => {
     }
     let timer = setInterval(() => getRandomItem(), 100);
     setTimeout(function () {
-        console.log(items[i])
         clearInterval(timer);
         houseBtn.classList.remove('plainBtn');
         houseBtn.classList.add(items[i].name);
