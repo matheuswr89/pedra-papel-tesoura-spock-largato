@@ -30,6 +30,7 @@ const player = document.getElementById('player');
 const playAgain = document.querySelector('.playAgain');
 const houseImg = document.createElement('img');
 const winner = document.querySelector('.winner');
+const winnerDiv = document.querySelector('#winner-div');
 const scoreText = document.getElementById('scoreText');
 let score = 0;
 
@@ -64,12 +65,10 @@ items.map(({ name, color, id }) => {
     let result = ''
     choice.addEventListener('click', function () {
         playerImg.removeAttribute('img')
-        resultText.removeAttribute('h1')
-        resultText.removeAttribute
+
         pentagon.style.display = 'none';
         game.style.display = 'flex';
         playerBtn.classList.add('btn', 'playerBtn', name);
-        console.log(document.getElementsByTagName('h1')[0].value)
 
         generateHouseItem();
         const houseId = localStorage.getItem('houseId');
@@ -155,7 +154,7 @@ items.map(({ name, color, id }) => {
         resultText.appendChild(document.createTextNode(result));
         setTimeout(function () {
             scoreText.innerText = score;
-            winner.appendChild(resultText);
+            winnerDiv.appendChild(resultText);
             winner.style.display = 'block';
         }, 2000);
     });
